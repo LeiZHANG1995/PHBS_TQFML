@@ -1,4 +1,11 @@
-Project Proposal
+Repository name: Bitcoin Price Prediction
+
+Group Member:
+Hang ZHANG        1701213146
+Wei ZHANG         1701213160
+Linsheng ZHUANG   1701212990
+Lei ZHANG         1701213148
+
 Project description：
 This project aims to select efficient factors (such as the supply and demand of bitcoin market, the attractiveness of bitcoin to investors, and the macroeconomic variables) that influence bitcoin price and predict its price changes in the future.
 
