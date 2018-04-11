@@ -1,4 +1,6 @@
-# Repository name: Bitcoin Price Prediction
+# Final Project Proposal
+
+## Repository name: Bitcoin Price Prediction
 
 ## Group Member:
 * Hang ZHANG        1701213146
@@ -18,8 +20,8 @@ This project aims to select efficient factors (such as the supply and demand of 
 * 6、	Evaluate the performance and plot the outcome
 
 ## Data source:
-https://blockchain.info/for data on bitcoin price & supply and demand of bitcoin market
-https://www.quandl.com/ for data on the circulation of bitcoin
-https://tools.wmflabs.org for data on the amount of bitcoin browsing
-Wind for macroeconomic data
+* https://blockchain.info/for data on bitcoin price & supply and demand of bitcoin market
+* https://www.quandl.com/ for data on the circulation of bitcoin
+* https://tools.wmflabs.org for data on the amount of bitcoin browsing
+* Wind for macroeconomic data
 
