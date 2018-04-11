@@ -1,6 +1,7 @@
 # Final Project Proposal
 
-## Repository name: Bitcoin Price Prediction
+## Repository name: 
+Bitcoin Price Prediction
 
 ## Group Member:
 * Hang ZHANG        1701213146
