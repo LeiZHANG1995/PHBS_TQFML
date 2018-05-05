@@ -9,11 +9,14 @@ Bitcoin Price Prediction
 * Linsheng ZHUANG   1701212990
 * Lei ZHANG         1701213148
 
-## Project description：
-This project aims to select efficient factors (such as the supply and demand of bitcoin market, the attractiveness of bitcoin to investors, and the macroeconomic variables) that influence bitcoin price and predict its price changes in the future.
+
+## Motivation:
+Over the last few years, Bitcoin has attracted a lot of investors and researchers due to its growing market capitalization, rapidly increasing price and high price volatility. This project aims to select efficient factors based on existing research and predict Bitcoin price change using simple LSTM model. 
+
+According to empirical analysis (Ciaian, 2016), Bitcoin market supply-demand fundamentals and Bitcoin’s attractiveness for investors have significant impact on Bitcoin price, while the relevance of macro-financial indicators are statistically insignificant. So we mainly use data for first two dimensions.
 
 ## Goals:
-Following the research motivation mentioned above, we have 3 main goals, which are in accordance with our research procedure and clearly state the steps.
+We have 3 main goals, which are in accordance with our research procedure and clearly state the steps.
 
 1. Time-series analysis: 
 For training set, we use ADL model to predict future bitcoin prices roughly on past price by time series analysis.
