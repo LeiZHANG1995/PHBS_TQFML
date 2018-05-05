@@ -33,6 +33,7 @@ First group of features are related to demand and supply of bitcoins.
 * the number of bitcoins circulated in the market (“supply”) measures total supply;
 * the total USD value of bitcoin supply in circulation (“capital”) indicates the market size;
 * the total USD value of trading volume on major bitcoin exchanges (“trade”) provides trading information.
+
 All the above variables come from https://blockchain.info/for and depict the demand and supply of bitcoins. Also we include “date” as a variable for time series analysis.
 
 Second group of features depicts the attractiveness of bitcoins to investors. We adopted views on Wikipedia (wiki) from https://tools.wmflabs.org/pageviews. We didn’t use Google’s search data because it’s on a weekly basis which does not meet our requirement.
