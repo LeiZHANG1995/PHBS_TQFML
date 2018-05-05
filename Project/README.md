@@ -24,5 +24,5 @@ This project aims to select efficient factors (such as the supply and demand of 
 * https://blockchain.info/for data on bitcoin price & supply and demand of bitcoin market
 * https://www.quandl.com/ for data on the circulation of bitcoin
 * https://tools.wmflabs.org for data on the amount of bitcoin browsing
-* Wind for macroeconomic data 2
+* Wind for macroeconomic data
 
