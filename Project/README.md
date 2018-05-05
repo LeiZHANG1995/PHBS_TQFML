@@ -11,9 +11,10 @@ Bitcoin Price Prediction
 
 
 ## Motivation:
-Over the last few years, Bitcoin has attracted a lot of investors and researchers due to its growing market capitalization, rapidly increasing price and high price volatility. This project uses efficient factors based on existing research to predict Bitcoin price change by simple LSTM model. 
+Over the last few years, Bitcoin has attracted a lot of investors and researchers due to its growing market capitalization, rapidly increasing price and high price volatility. Understanding Bitcoin price formation and particularly predicting its price change are meaningful for investment decision. This project attempts to employ simple LSTM model to Bitcoin price prediction.
 
-According to empirical analysis (Ciaian, 2016), Bitcoin market supply-demand fundamentals and Bitcoin’s attractiveness for investors have significant impact on Bitcoin price, while the relevance of macro-financial indicators are statistically insignificant. So we mainly use data for the first two dimensions.
+We use efficient factors based on existing research to predict Bitcoin price. According to empirical analysis (Ciaian, 2016), Bitcoin market supply-demand fundamentals and Bitcoin’s attractiveness for investors have significant impact on Bitcoin price, while the relevance of macro-financial indicators are statistically insignificant. So we mainly use data for the first two dimensions.
+
 
 ## Goals:
 We have 3 main goals, which are in accordance with our research procedure and clearly state the steps.
