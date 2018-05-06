@@ -31,7 +31,7 @@ Using the modified predicted price and past value of the class feature (“+1”
 Overall, we hope that our model can help investors learn something about the future trend of bitcoin price (going up/down) from its past trend and make better investment decisions.
 
 ## Data source:
-We picked 355 day’s data consisting of 6 variables from May 2nd, 2017 to May 1st, 2018 on a daily basis. The explained variable in our research is the price of bitcoins (“price”). About the features used, we mainly divided the variables into two groups.
+The whole data collection procedure is in [Bitcoin_1_Download_Data.ipynb](https://github.com/LeiZHANG1995/PHBS_TQFML/blob/master/Project/Bitcoin_1_Download_Data.ipynb) file. Please click the link to find more about data collection. In general, we picked 355 day’s data consisting of 6 variables from May 2nd, 2017 to May 1st, 2018 on a daily basis. The explained variable in our research is the price of bitcoins (“price”). About the features used, we mainly divided the variables into two groups.
 
 First group of features are related to demand and supply of bitcoins. 
 * the number of bitcoins circulated in the market (“supply”) measures total supply;
@@ -41,3 +41,14 @@ First group of features are related to demand and supply of bitcoins.
 All the above variables come from https://blockchain.info/for and depict the demand and supply of bitcoins. Also we include “date” as a variable for time series analysis.
 
 Second group of features depicts the attractiveness of bitcoins to investors. We adopted views on Wikipedia (wiki) from https://tools.wmflabs.org/pageviews. We didn’t use Google’s search data because it’s on a weekly basis which does not meet our requirement.
+
+## Models
+Briefly, we combine the traditional classifiation algorithm (Logistic Regression) and time series regression (ADL model) together. We call our original algorithm ..LSTM.. model, which is inspired from the LSTM neural network model. If you are interested in the realization of this method, you can find all the details in the [LSTM.py](https://github.com/LeiZHANG1995/PHBS_TQFML/blob/master/Project/LSTM.py) file. 
+
+### ADL model
+
+
+
+
+
+
