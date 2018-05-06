@@ -48,7 +48,7 @@ Briefly, we combine the traditional classifiation algorithm (Logistic Regression
 ### ADL model
 ADL (Autoregressive distributed lag) model is given in the following way:
 
-$$Y_t = \beta (1+L+L^2+...+L^{p-1})Y_{t-1}+\alpha (1+L+L^2+...+L^{p-1})X_{t-1}$$
+\[Y_t = \beta (1+L+L^2+...+L^{p-1})Y_{t-1}+\alpha (1+L+L^2+...+L^{p-1})X_{t-1}\]
 
 This model combine both prediction and explanation together, and is the "best" (Professor Jiaxiang Zhu) time series model in econometrics' view. This model is evaluated in two steps:
 
