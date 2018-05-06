@@ -63,9 +63,9 @@ One we to improve the reliability of this "up and down" judgement is to take the
 As for the added information that we consider in the second layer (classification), we add the price fluctuation of the previous period. This makes our model a little bit similar to the _Long and Short Term Memory_ neural network model. 
 
 ### Fit the data window recursively
-This is not enough. Our data ranges a year, and the data pattern may differ in different time periods. Ws say, the price tendency goes up in the first 3 months, and goes down in the nest 4 months. Both ADL regression and Logistic classification are linear model, and would you believe the trained model of the pooled training data? No we don't. 
+This is not enough. Our data ranges a year, and the data pattern may differ in different time periods. We say, the price tendency goes up in the first 3 months, and goes down in the nest 4 months. Both ADL regression and Logistic classification are linear model, and would you believe the trained model of the pooled training data? No we don't. 
 
-How to fix this problem? Our group choose a recursive way of estimation and prediction. We do our LSTM algorithm on moving data windows. The window length can be 40 days or 50 days. We first select the window from 1st-40th period and do LSTM estimation, and then we move the data window to 2nd-41th period, and repeat this procedure. 
+How to fix this problem? Our group choose a recursive way of estimation and prediction. We do our LSTM algorithm on moving data windows. The window length can be 40 days or 50 days. We first select the window from 1-40 period and do LSTM estimation, and then we move the data window to 2-41 period, and repeat this procedure. 
 
-This recursive window way can be implement ob both the **training set** and **test set**. It can improve the performance of training accuracy, but it can cause overfitting problems if we selece a short window length. 
+This recursive window way can be implement on both the **training set** and **test set**. It can improve the performance of training accuracy, but it can cause overfitting problems if we selece a short window length. 
 
