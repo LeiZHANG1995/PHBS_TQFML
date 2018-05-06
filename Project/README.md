@@ -19,17 +19,11 @@ We use efficient factors based on existing research to predict Bitcoin price. Ac
 ## Goals:
 Ultimately, we want to predict the price fluctuation of bitcoin. We want to do forecast about the 'up' and 'down' of price tendency in the future. We will do this in three steps:
 
-**1. Time-series Model: predict the future price (hidden layer)**
+**1. Time-series Model: predict the future price (hidden layer).**  For training set, we use ADL model to predict future bitcoin prices roughly on past price and relevant indicators by time series analysis.
 
-For training set, we use ADL model to predict future bitcoin prices roughly on past price and relevant indicators by time series analysis.
+**2. Model Modification by Classification: up and down (output).**  Considering that in the real world, ADL model may not fit well, we then use simple LSTM Neural Network Model to allow for both long-term and short-term repeating patterns and get a more reliable signal about the price rise or fall (“+1” means that price going up in the following trading day and “-1” means declining).
 
-**2. Model Modification by Classification: would the future price go up or down? (output)**
-
-Considering that in the real world, ADL model may not fit well, we then use simple LSTM Neural Network Model to allow for both long-term and short-term repeating patterns and get a more reliable signal about the price rise or fall (“+1” means that price going up in the following trading day and “-1” means declining).
-
-**3. Prediction**
-
-Using the modified predicted price and past value of the class feature , we run our model on the test data set.
+**3. Prediction.**  Using the modified predicted price and past value of the class feature , we run our model on the test data set.
 
 Overall, we hope that our model can help investors learn something about the future trend of bitcoin price (going up/down) from its past trend and make better investment decisions.
 
@@ -73,5 +67,5 @@ This is not enough. Our data ranges a year, and the data pattern may differ in d
 
 How to fix this problem? Our group choose a recursive way of estimation and prediction. We do our LSTM algorithm on moving data windows. The window length can be 40 days or 50 days. We first select the window from 1st-40th period and do LSTM estimation, and then we move the data window to 2nd-41th period, and repeat this procedure. 
 
-This reiursive window way can be implement ob both the **training set** and **test set**. It can improve the performance of training accuracy, but it can cause overfitting problems if we selece a short window length. 
+This recursive window way can be implement ob both the **training set** and **test set**. It can improve the performance of training accuracy, but it can cause overfitting problems if we selece a short window length. 
 
