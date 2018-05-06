@@ -43,10 +43,18 @@ All the above variables come from https://blockchain.info/for and depict the dem
 Second group of features depicts the attractiveness of bitcoins to investors. We adopted views on Wikipedia (wiki) from https://tools.wmflabs.org/pageviews. We didn’t use Google’s search data because it’s on a weekly basis which does not meet our requirement.
 
 ## Models
-Briefly, we combine the traditional classifiation algorithm (Logistic Regression) and time series regression (ADL model) together. We call our original algorithm ..LSTM.. model, which is inspired from the LSTM neural network model. If you are interested in the realization of this method, you can find all the details in the [LSTM.py](https://github.com/LeiZHANG1995/PHBS_TQFML/blob/master/Project/LSTM.py) file. 
+Briefly, we combine the traditional classifiation algorithm (Logistic Regression) and time series regression (ADL model) together. We call our original algorithm **LSTM** model, which is inspired from the LSTM neural network model. If you are interested in the realization of this method, you can find all the details in the [LSTM.py](https://github.com/LeiZHANG1995/PHBS_TQFML/blob/master/Project/LSTM.py) file. The results of data analysis are all displayed in [Bitcoin_2_Data_Analysis.ipynb](https://github.com/LeiZHANG1995/PHBS_TQFML/blob/master/Project/Bitcoin_2_Data_Analysis.ipynb) file, and please click the link to find more details. 
 
 ### ADL model
+ADL (Autoregressive distributed lag) model is given in the following way:
 
+$$Y_t = \beta (1+L+L^2+...+L^{p-1})Y_{t-1}+\alpha (1+L+L^2+...+L^{p-1})X_{t-1}$$
+
+This model combine both prediction and explanation together, and is the "best" (Professor Jiaxiang Zhu) time series model in econometrics' view. This model is evaluated in two steps:
+
+1) Do first difference on both sides
+
+2) Using OLS to estimate the parameters
 
 
 
