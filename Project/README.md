@@ -20,12 +20,15 @@ We use efficient factors based on existing research to predict Bitcoin price. Ac
 Ultimately, we want to predict the price fluctuation of bitcoin. We want to do forecast about the 'up' and 'down' of price tendency in the future. We will do this in three steps:
 
 **1. Time-series Model: predict the future price (hidden layer)**
+
 For training set, we use ADL model to predict future bitcoin prices roughly on past price and relevant indicators by time series analysis.
 
 **2. Model Modification by Classification: would the future price go up or down? (output)**
+
 Considering that in the real world, ADL model may not fit well, we then use simple LSTM Neural Network Model to allow for both long-term and short-term repeating patterns and get a more reliable signal about the price rise or fall (“+1” means that price going up in the following trading day and “-1” means declining).
 
 **3. Prediction**
+
 Using the modified predicted price and past value of the class feature , we run our model on the test data set.
 
 Overall, we hope that our model can help investors learn something about the future trend of bitcoin price (going up/down) from its past trend and make better investment decisions.
