@@ -14,13 +14,19 @@ class Utils:
                                   # too small float dividing.
         my = np.asmatrix(y).transpose()*10
         A = np.matmul(mx.transpose(), mx)
-        B = np.matmul(mx.transpose(), my)
-        beta = np.matmul(np.linalg.inv(A), B)
-        return beta
+        b = np.matmul(mx.transpose(), my)
+        try:
+            beta = np.linalg.solve(A, b) 
+        except:
+            Q, R = np.linalg.qr(A)
+            b2 = np.matmul(Q.transpose(), b)
+            beta = np.linalg.solve(R, b2)
+        finally:
+            return beta
     
     def Sign(self, x):
         y = x.copy()
-        y[y>0] = 1
+        y[y>=0] = 1
         y[y<0] = -1
         return(y)
     
@@ -40,7 +46,7 @@ class Predictor:
     def __init__(self):
         pass
     
-    def ADL_fit(self, y, x, p):
+    def ADL_fit(self, y, x, lag):
         if isinstance(y, pd.Series):
             y = y.values
         if isinstance(x, pd.DataFrame): 
@@ -52,21 +58,21 @@ class Predictor:
         dy = y[1:] - y[0:len(y)-1] 
         dx = x[1:] - x[0:len(x)-1] 
         X = None
-        for i in range(0, p):
-            A = np.asmatrix(dx[i:window-p+i]) 
-            B = np.asmatrix(dy[i:window-p+i]).transpose()
+        for i in range(0, lag):
+            A = np.asmatrix(dx[i:window-lag+i]) 
+            B = np.asmatrix(dy[i:window-lag+i]).transpose()
             tmp = np.hstack((A, B))
             if X is None:
                 X = tmp
             else:
                 X = np.hstack((X, tmp))
         # get beta
-        dy_1 = dy[p:] # len = 57
+        dy_1 = dy[lag:] # len = 57
         X_0 = X[:len(X)-1]
         ut = Utils() 
         beta = ut.Ols(dy_1, X_0)  ## beta for dx and dy
         # get prediction
-        y1 = np.asmatrix(y[p:]).transpose()
+        y1 = np.asmatrix(y[lag:]).transpose()
         y2 = y1 + np.matmul(X, beta)
         y2 = y2.transpose().tolist()[0]
         self.W = np.asmatrix(beta);
