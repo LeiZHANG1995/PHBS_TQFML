@@ -49,7 +49,7 @@ This model combines both prediction and explanation together, and is the "best" 
 
 2) Using OLS to estimate the parameters: using QR decomposition to improve accuracy
 
-After estimation, we can use the estimated model to do prediction. If the `lag` order is _k_, given _P_ from 1 to _k_ period, we are able to predict the _P_ of _k_+1 preiod using this ADL model. 
+After estimation, we can use the estimated model to do prediction. If the `lag` order is _k_, given _P_ from 1 to _k+1_ period, we are able to predict the _P_ of _k_+2 preiod using this ADL model. 
 
 ### LSTM model
 From previous step, we can get a set of predicted _P_. Compare those predicted _P_ with the real price, and we can draw some conclusion about the future price fluctuation. But this prediction is not as reliable as we think. 
