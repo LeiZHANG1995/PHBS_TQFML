@@ -40,14 +40,14 @@ All the above variables come from https://blockchain.info/for and depict the dem
 Second group of features depicts the attractiveness of bitcoins to investors. We adopted views on Wikipedia (wiki) from https://tools.wmflabs.org/pageviews. We didn’t use Google’s search data because it’s on a weekly basis which does not meet our requirement.
 
 ## Model:
-Briefly, we combine the traditional classifiation algorithm (Logistic Regression) and time series regression (ADL model) together. We call our original algorithm **LSTM** model, which is inspired from the LSTM neural network model. If you are interested in the realization of this method, you can find all the details in the [LSTM.py](https://github.com/LeiZHANG1995/PHBS_TQFML/blob/master/Project/LSTM.py) file. The results of data analysis are all displayed in [Bitcoin_2_Data_Analysis.ipynb](https://github.com/LeiZHANG1995/PHBS_TQFML/blob/master/Project/Bitcoin_2_Data_Analysis.ipynb) file, and please click the link to find more details. 
+Briefly, we combine the traditional classifiation algorithm (Logistic Regression) and time series regression (ADL model) together. We call our original algorithm **LSTM** model, which is inspired from the [LSTM Neural Network Model](http://www.jakob-aungiers.com/articles/a/LSTM-Neural-Network-for-Time-Series-Prediction). If you are interested in the realization of this method, you can find all the details in the [LSTM.py](https://github.com/LeiZHANG1995/PHBS_TQFML/blob/master/Project/LSTM.py) file. The results of data analysis are all displayed in [Bitcoin_2_Data_Analysis.ipynb](https://github.com/LeiZHANG1995/PHBS_TQFML/blob/master/Project/Bitcoin_2_Data_Analysis.ipynb) file, and please click the link to find more details. 
 
 ### ADL model
 ADL (Autoregressive distributed lag) model is given in the following form:
 
 $$ P_t = \beta (1+L+L^2+...+L^{k-1})P_{t-1}+\alpha (1+L+L^2+...+L^{k-1})X_{t-1} $$
 
-This model combine both prediction and explanation together, and is the "best" (Professor Jiaxiang Zhu) time series model in econometrics' view. This model is evaluated in two steps:
+This model combines both prediction and explanation together, and is the "best" (Professor Jiaxiang Zhu) time series model in econometrics' view. This model is evaluated in two steps:
 
 1) Do first order difference on both sides of the regression equation
 
@@ -56,16 +56,15 @@ This model combine both prediction and explanation together, and is the "best" (
 After estimation, we can use the estimated model to do prediction. If the `lag` order is _k_, given _P_ from 1 to _k_ period, we are able to predict the _P_ of _k_+1 preiod using this ADL model. 
 
 ### LSTM model
-From previous step, we can get a set of predicted _P_. Compare those predicted _P_ with the real price, and we can draw some conclusion about the future price fluctuation. But does this prediction reliable? We don't think so. 
+From previous step, we can get a set of predicted _P_. Compare those predicted _P_ with the real price, and we can draw some conclusion about the future price fluctuation. But this prediction is not as reliable as we think. 
 
-One we to improve the reliability of this "up and down" judgement is to take the predicted price leve as the hidden layer, and further do some classifcation on our hidden layer. The final output would combine both the predicted _y_ and other information that we think is of value. This modification might improve the prediction accuracy. 
+One we to improve the reliability of this "up and down" judgement is to take the predicted price as the hidden layer, and further do some classifcation on our hidden layer. The final output would combine both the predicted _y_ and other information that we think is of value. This modification might improve the prediction accuracy. 
 
 As for the added information that we consider in the second layer (classification), we add the price fluctuation of the previous period. This makes our model a little bit similar to the _Long and Short Term Memory_ neural network model. 
 
 ### Fit the data window recursively
-This is not enough. Our data ranges a year, and the data pattern may differ in different time periods. We say, the price tendency goes up in the first 3 months, and goes down in the nest 4 months. Both ADL regression and Logistic classification are linear model, and would you believe the trained model of the pooled training data? No we don't. 
+This is not enough. The time span of our data is one year, and the data pattern may differ in different time periods. For example, the price tendency goes up in the first 3 months, and then goes down in the next 4 months. Both ADL regression and Logistic classification are linear model, therefore, the trained model of the pooled training data does not seem reliable.
 
-How to fix this problem? Our group choose a recursive way of estimation and prediction. We do our LSTM algorithm on moving data windows. The window length can be 40 days or 50 days. We first select the window from 1-40 period and do LSTM estimation, and then we move the data window to 2-41 period, and repeat this procedure. 
+To fix this problem, Our group choose a recursive way of estimation and prediction. We do our LSTM algorithm on moving data windows. The window length can be 40 days or 50 days. We first select the window from 1-40 period and do LSTM estimation, and then we move the data window to 2-41 period, and repeat this procedure. 
 
 This recursive window way can be implement on both the **training set** and **test set**. It can improve the performance of training accuracy, but it can cause overfitting problems if we selece a short window length. 
-
