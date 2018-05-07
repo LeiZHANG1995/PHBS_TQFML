@@ -111,9 +111,14 @@ class Predictor:
         test_re = self.ADL_predict(y0, x, lag)
         u = Utils()
         pf = u.Sign(np.array(test_re[1:]) - np.array(test_re[:len(test_re)-1]))
-        rf = u.Sign(np.array(real_price[1:]) - np.array(real_price[:len(real_price)-1]))
-        return({'accuracy':np.sum(pf==rf)/(len(test_re)-1), 'pf':pf, 'rf':rf})
-    
+        rf = u.Sign(np.array(real_price[1:]) - np.array(real_price[:len(real_price)-1])) 
+        ones = np.array(len(rf) * [1]) 
+        n_ones = np.array(len(rf) * [-1]) 
+        tpr = np.sum(pf[rf==ones]==ones[rf==ones]) / np.sum(rf==ones) 
+        fpr = np.sum(pf[rf==n_ones]==n_ones[rf==n_ones]) / np.sum(rf==n_ones) 
+        accu = np.sum(pf==rf)/(len(test_re)-1) 
+        return({'accuracy':accu, 'tpr':tpr, 'fpr':fpr, 'pf':pf, 'rf':rf}) 
+ 
     def LSTM_fit(self, Y, X, lag, window):
         self.X_training = X
         self.Y_training = Y
@@ -136,9 +141,8 @@ class Predictor:
             x_adl = X[i:(i+window)]
             y_adl = Y[i:(i+window)]
             ## Step 2: ADL Regression. Get h -- hiden layer
-            p = Predictor()
             u = Utils()
-            re = p.ADL_fit(y_adl, x_adl, lag)
+            re = self.ADL_fit(y_adl, x_adl, lag)
             self.W = re['w']
             y_hat = re['y_hat']    ##--- index = lag+1 : window+1 ---##
             if i == 0:
@@ -206,10 +210,20 @@ class Predictor:
     def LSTM_predict_accuracy(self, y, x, lag, window):
         y = self.Y_training.append(y) 
         re = self.LSTM_predict(x, lag, window)
-        pf = re['prediction']
+        pf = np.array(re['prediction']) 
         u = Utils()
         rf = u.Sign(y.diff()) 
-        rf = rf[len(rf)-len(pf)-1: len(rf)-1]  
+        rf = rf[len(rf)-len(pf)-1: len(rf)-1].values  
+        ones = np.array(len(rf) * [1])
+        n_ones = np.array(len(rf) * [-1])
         accuracy = np.sum(rf==pf)/(len(pf))
-        return({'y_hat':re['y_hat'], 'pf':pf, 'rf':rf, 'accuracy':accuracy})
+        tpr = np.sum(pf[rf==ones]==ones[rf==ones]) / np.sum(rf==ones)
+        fpr = np.sum(pf[rf==n_ones]==n_ones[rf==n_ones]) / np.sum(rf==n_ones)
+        return({'y_hat':re['y_hat'], 'pf':pf, 'rf':rf, 'accuracy':accuracy, 'tpr':tpr, 'fpr':fpr}) 
+
+
+
+
+
+
 
